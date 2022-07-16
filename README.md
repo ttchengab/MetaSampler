@@ -11,7 +11,7 @@ This is PyTorch implementation of the paper Meta-Sampler: Almost Universal yet T
           Xie, Qian and 
           Trigoni, Niki and 
           Markham, Andrew},
-  booktitle={ECCV},
+  booktitle={European Conference on Computer Vision (ECCV)},
   year={2022}
 }
 ```

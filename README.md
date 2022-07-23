@@ -26,10 +26,10 @@ The code uses standard [ModelNet40 dataset](https://modelnet.cs.princeton.edu) t
 To perform the proposed joint-training on a particular network task using unsampled point clouds:
 
 ```shell
-python train_networktask_ensemble.py
+python train_samplenet_networktask_ensemble.py
 ```
 
-and replace ```networktask``` with the designated task (e.g., classification).
+and replace ```networktask``` with the designated task (e.g., classification/pcn/retrieval).
 
 
 ## Training meta-sampler

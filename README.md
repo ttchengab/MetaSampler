@@ -1,4 +1,4 @@
-# [ECCV2022] Meta-Sampler: Almost Universal yet Task-Oriented Sampling for Point Clouds
+# [ECCV 2022] Meta-Sampler: Almost Universal yet Task-Oriented Sampling for Point Clouds
 This is PyTorch implementation of the paper Meta-Sampler: Almost Universal yet Task-Oriented Sampling for Point Clouds which will appear in ECCV-2022 Conference. ** The readability of the code will continue to be polished. **
 
 ## Cite this work

@@ -48,13 +48,9 @@ sampler = samplenet.SampleNet(
     input_shape="bnc",
     output_shape="bnc",
 )
-'''
-retrievalnet128_2022-02-11_07-02  retrievalnet_ensemble128_2022-02-13_06-33
-retrievalnet16_2022-02-11_18-53   retrievalnet_ensemble16_2022-02-12_18-54
-retrievalnet32_2022-02-11_07-16   retrievalnet_ensemble32_2022-02-12_19-06
-retrievalnet64_2022-02-11_07-04   retrievalnet_ensemble64_2022-02-12_18-54
-'''
-checkpoint = torch.load('log/shape_retrieval_sample/retrievalnet16_2022-02-11_18-53/checkpoints/best_model.pth')
+
+
+checkpoint = torch.load('log/shape_retrieval_sample/retrievalnet16_2022-02-11_18-53/checkpoints/best_model.pth') # Put checkpoint directory here.
 sampler.load_state_dict(checkpoint['model_state_dict'])
 sampler = sampler.cuda()
 
@@ -97,28 +93,21 @@ def test(model, sampler, loader):
     for j, (points, target_sets, labels) in tqdm(enumerate(loader), total=len(loader)):
         if not args.use_cpu:
             points, labels = points.cuda(), labels.cuda()
-        # points = points.transpose(2,1)
         best_pred = -1
         best_pred_val = 0
-        # print(labels)
         simp_pc, proj_pc = sampler(points)
         proj_pc = proj_pc.transpose(2, 1)
         for i, target_cloud in enumerate(target_sets):
-            # TODO, cuda and transpose
             target_cloud = target_cloud.cuda()
             target_cloud = target_cloud.transpose(2, 1)
-            # print(target_cloud.shape)
             pred_val = classifier(proj_pc, target_cloud)
             if pred_val > best_pred_val:
                 best_pred_val = pred_val
                 best_pred = i
         if best_pred == labels:
             correct += 1
-        # print("labels {}, predictions {}".format(best_pred, labels))
         total += 1
 
-        # if total % 50 == 0:
-        #     print('Accuracy {}'.format(correct/total))
     acc = correct/total
 
     return acc
@@ -135,18 +124,8 @@ def main(args):
 
     '''LOG'''
     args = parse_args()
-    # logger = logging.getLogger("Model")
-    # logger.setLevel(logging.INFO)
-    # formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    # file_handler = logging.FileHandler('%s/%s.txt' % (log_dir, args.model))
-    # file_handler.setLevel(logging.INFO)
-    # file_handler.setFormatter(formatter)
-    # logger.addHandler(file_handler)
-    # log_string('PARAMETER ...')
-    # log_string(args)
 
     '''DATA LOADING'''
-    # log_string('Load dataset ...')
     print('Loading dataset')
     data_path = 'data/modelnet40_normal_resampled/'
 
@@ -164,10 +143,6 @@ def main(args):
         param.requires_grad = False
     if not args.use_cpu:
         test_network = test_network.cuda()
-
-    # if not args.use_cpu:
-    #     classifier = classifier.cuda()
-    #     criterion = criterion.cuda()
 
     with torch.no_grad():
         acc = test(test_network.eval(), sampler.eval(), testDataLoader)

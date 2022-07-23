@@ -162,6 +162,8 @@ for epoch in range(EPOCHS):
         optimizer.step()
 
     with torch.no_grad():
+        sampler.training = False
+        sampler.eval()
         test_network.eval()
         val_loss = 0
         total = 0

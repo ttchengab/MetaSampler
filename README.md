@@ -17,7 +17,7 @@ This is PyTorch implementation of the paper Meta-Sampler: Almost Universal yet T
 ```
 
 ## Preliminaries
-The meta-sampler was built on top of the official [PyTorch SampleNet implementation](https://github.com/itailang/SampleNet) and the training algorithm is performed on pretrained point cloud networks: [PointNet/PointNet2](https://github.com/yanx27/Pointnet_Pointnet2_pytorch), [Point Completion Network (PCN)](https://github.com/vinits5/learning3d/tree/master/models), and [PCRNet](https://github.com/vinits5/pcrnet_pytorch). The essential components from SampleNet and PointNet/PCN are contained in this repository. To test on PCRNet, clone the pcrnet implementation into this github repository.
+The meta-sampler was built on top of the official [PyTorch SampleNet implementation](https://github.com/itailang/SampleNet) and the training algorithm is performed on pretrained point cloud networks: [PointNet/PointNet2](https://github.com/yanx27/Pointnet_Pointnet2_pytorch), [Point Completion Network (PCN)](https://github.com/vinits5/learning3d/tree/master/models), and [PCRNet](https://github.com/vinits5/pcrnet_pytorch). Please cite them accordingly when using their code. The essential components from SampleNet and PointNet/PCN are contained in this repository. To test on PCRNet, clone the pcrnet implementation into this github repository.
 
 The code uses standard [ModelNet40 dataset](https://modelnet.cs.princeton.edu) that can also be obtained [here](https://github.com/yanx27/Pointnet_Pointnet2_pytorch).
 
@@ -35,6 +35,7 @@ and replace ```networktask``` with the designated task (e.g., classification/pcn
 ## Training meta-sampler
 
 To perform meta-sampler training:
+
 ```shell
 python train_samplenet_meta.py
 ```

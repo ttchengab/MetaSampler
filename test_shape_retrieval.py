@@ -1,6 +1,6 @@
 """
-Author: Benny
-Date: Nov 2019
+Original Code Author: Benny on Nov 2019
+Updated by: Ta-Ying Cheng 2022 for Shape Retrieval
 """
 
 import os
